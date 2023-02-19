@@ -8,6 +8,7 @@ def get_random_word():
         if w != '\n':
             words_list.append(w.strip().lower())
     words_file.close()
+    return random.choice(words_list)
 
 
 
@@ -94,3 +95,6 @@ def get_random_word():
 #    ||     /   \
 #    ||  
 # ___||____________
+
+#YOU'RE DEAD
+
