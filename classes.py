@@ -129,6 +129,7 @@ ___||____________
 
 
     def change_output(self, letter):
+        print("\033[H\033[J")
         if letter in round.word:
             for index in round.check_position(letter):
                 self.hidden_output[index] = self.word[index]
@@ -141,8 +142,8 @@ ___||____________
 
 
     def check_win(self):
-        print('\n', ''.join(self.hidden_output))
-        print('\n', self.word)
+        # print('\n', ''.join(self.hidden_output))
+        # print('\n', self.word)
         if ''.join(self.hidden_output) == self.word:
             return  True
         else:
@@ -154,12 +155,12 @@ ___||____________
 round = Round()
 print(round.output_list[0])
 while round.counter < round.fail_count and not round.check_win():
-    letter = input('Введите букву:')
+    letter = input('\nВведите букву:')
     round.change_output(letter)
 
 if round.check_win():
-    print('win')
+    print('\nwin')
 else:
-    print('fail')
+    print('\nfail')
 
 
