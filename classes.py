@@ -7,7 +7,7 @@ class Round:
         self.counter = 0
         self.fail_count = 6
         self.word = self.get_random_word()
-        self.hidden_output = len(self.word) * '_ '
+        self.hidden_output = len(self.word) * '_'
         self.output_list = [
             '0',
             '1',
@@ -37,40 +37,49 @@ class Round:
 
 
     def change_output(self, letter):
+        if letter in round.word:
+            for index in round.check_position(letter):
+                self.hidden_output[index] = self.word[index]
+        else:
+            round.counter += 1
         print(self.output_list[self.counter])
-        print('Тут должна быть строка с состоянием угадываемогом слова')
+        print(self.hidden_output)
 
+
+    # def change_hangman(self):
+    #     round.counter += 1
+    #     print(self.output_list[self.counter])
+    #     print(self.hidden_output)
+
+
+    # def change_hidden_output(self, indexes):
+    #     for index in indexes:
+    #         self.hidden_output[index] = self.word[index]
+    #     print(self.output_list[self.counter])
+    #     print(self.hidden_output)
+
+
+    def check_win(self):
+        if self.hidden_output == self.word:
+            return True
+        else:
+            return False
+        
 
     def check_fail(self):
         pass
 
 
-
-
-# hidden_word = len(secret_word) * '_'
-# secret_word = get_random_word()
-# print(hidden_word, secret_word)
-# letter = input('Введите букву:')
-
-# if letter_in_word():
-#     for i in range(len(secret_word)):
-#         if letter == secret_word[i]:
-#             hidden_word.find(letter)
-
-
-
 round = Round()
 
-while round.counter < round.fail_count:
+while round.counter < round.fail_count or round.check_win():
     letter = input('Введите букву:')
-    if letter in round.word:
-        list_of_indexes = round.check_position(letter)
+    round.change_output(letter)
+    # letter = input('Введите букву:')
+    # if letter in round.word:
+    #     list_of_indexes = round.check_position(letter)
+    #     round.change_hidden_output(list_of_indexes)
+    # else:
+    #     round.change_hangman()
 
 
-
-        change_output()
-        check_uotput()
-    else:
-        counter += 1
-        draw_hangman()
-        check_fail()
