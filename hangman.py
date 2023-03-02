@@ -3,8 +3,8 @@ from Round import Round
 
 try:
     round = Round()
-
     print(round.output_list[0])
+    
     while round.counter < round.fail_count and not round.check_win():
         letter = input('\nЗагадано слово на русском языке. Введите букву:')
         round.change_output(letter)
@@ -16,3 +16,5 @@ try:
 
 except FileNotFoundError:
     print('Словарь не найден')
+except IndexError:
+    print('Ошибка индексирования')
