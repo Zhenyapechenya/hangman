@@ -5,7 +5,6 @@ class Round:
 
     def __init__(self):
         self.counter = 0
-        self.fail_count = 89
         self.word = self.get_random_word()
         self.hidden_output = self.define_hidden_output()
         self.output_list = [
@@ -127,6 +126,7 @@ ___||____________
 ___||____________
             """
         ]
+        self.fail_count = len(self.output_list) - 1
 
 
     def get_random_word(self):
