@@ -130,16 +130,13 @@ ___||____________
 
 
     def get_random_word(self):
-        try:
-            words_file = open("words.txt", "r")
-            words_list = []
-            for w in words_file.readlines():
-                if w != '\n':
-                    words_list.append(w.strip().lower())
-            words_file.close()
-            return random.choice(words_list)
-        except:
-            print("Invalid")
+        words_file = open("words.txt", "r")
+        words_list = []
+        for w in words_file.readlines():
+            if w != '\n':
+                words_list.append(w.strip().lower())
+        words_file.close()
+        return random.choice(words_list)
 
 
     def define_hidden_output(self):
@@ -165,7 +162,6 @@ ___||____________
         else:
             self.counter += 1
         print(self.output_list[self.counter])
-
         for elem in self.hidden_output:
             print(elem, end=' ')
 
@@ -175,6 +171,4 @@ ___||____________
             return  True
         else:
             return False
-
-
-
+        
