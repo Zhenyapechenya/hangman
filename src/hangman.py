@@ -1,9 +1,24 @@
 from Round import Round
+import sys
+
+
+def start_game():
+    param = input(
+"""Если хотите поиграть, нажмите 1.
+Чтобы выйти из игры, нажмите 2
+""")
+    if param == '1':
+        print("\033[H\033[J")
+        return Round()
+    elif param == '2':
+        sys.exit('Увидимся в следующий раз')
+    else:
+        print('Вы ввели неверный параметр')
+        return start_game()
 
 
 try:
-    round = Round()
-    print("\033[H\033[J")
+    round = start_game()
     print(round.output_list[0])
     
     while round.counter < round.fail_count and not round.check_win():
@@ -14,6 +29,7 @@ try:
         print('\n\nПоздравляю с победой!')
     else:
         print('\n\nВы проиграли. Загаданное слово:', round.word)
+
 
 except FileNotFoundError:
     print('Словарь не найден')

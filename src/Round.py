@@ -164,6 +164,7 @@ ___||____________
         print(self.output_list[self.counter])
         for elem in self.hidden_output:
             print(elem, end=' ')
+        print('hey')
 
 
     def check_win(self):
