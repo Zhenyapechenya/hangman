@@ -21,9 +21,7 @@ def start_game():
 try:
     while True: 
         round = start_game()
-
-        print(f'\nОшибок: {round.counter} из {round.fail_count}')
-        print(round.output_list[0])
+        round.change_output('r')
         
         while round.counter < round.fail_count and not round.check_win():
             letter = input('\n\nЗагадано слово на русском языке. Введите букву:')
