@@ -164,6 +164,8 @@ ___||____________
             if letter in self.word:
                 for index in self.check_position(letter):
                     self.hidden_output[index] = self.word[index]
+            elif letter == 'r':
+                pass
             else:
                 self.counter += 1
 
