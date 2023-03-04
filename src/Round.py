@@ -1,4 +1,5 @@
 import random
+import sys
 
 
 class Round:
@@ -130,13 +131,16 @@ ___||____________
 
 
     def get_random_word(self):
-        words_file = open("words.txt", "r")
-        words_list = []
-        for w in words_file.readlines():
-            if w != '\n':
-                words_list.append(w.strip().lower())
-        words_file.close()
-        return random.choice(words_list)
+        try:
+            words_file = open("words.txt", "r")
+            words_list = []
+            for w in words_file.readlines():
+                if w != '\n':
+                    words_list.append(w.strip().lower())
+            words_file.close()
+            return random.choice(words_list)
+        except FileNotFoundError:
+            sys.exit('Словарь не найден.')
 
 
     def define_hidden_output(self):
@@ -155,16 +159,23 @@ ___||____________
 
 
     def change_output(self, letter):
-        print("\033[H\033[J")
-        if letter in self.word:
-            for index in self.check_position(letter):
-                self.hidden_output[index] = self.word[index]
-        else:
-            self.counter += 1
-        print(self.output_list[self.counter])
-        for elem in self.hidden_output:
-            print(elem, end=' ')
+        try:
+            print("\033[H\033[J")
+            if letter in self.word:
+                for index in self.check_position(letter):
+                    self.hidden_output[index] = self.word[index]
+            else:
+                self.counter += 1
 
+            print(f'\nОшибок: {self.counter} из {self.fail_count}')
+            print(self.output_list[self.counter])
+
+            for elem in self.hidden_output:
+                print(elem, end=' ')
+
+        except IndexError:
+            sys.exit('Ошибка индексирования.')
+        
 
     def check_win(self):
         if ''.join(self.hidden_output) == self.word:
