@@ -161,11 +161,13 @@ ___||____________
                 self.hidden_output[index] = self.word[index]
         else:
             self.counter += 1
+
+        print(f'\nОшибок: {self.counter} из {self.fail_count}')
         print(self.output_list[self.counter])
+
         for elem in self.hidden_output:
             print(elem, end=' ')
-        print('hey')
-
+        
 
     def check_win(self):
         if ''.join(self.hidden_output) == self.word:
