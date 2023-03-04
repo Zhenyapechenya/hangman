@@ -18,21 +18,15 @@ def start_game():
         return start_game()
 
 
-try:
-    while True: 
-        round = start_game()
-        round.change_output('r')
-        
-        while round.counter < round.fail_count and not round.check_win():
-            letter = input('\n\nЗагадано слово на русском языке. Введите букву:')
-            round.change_output(letter)
+while True: 
+    round = start_game()
+    round.change_output('r')
+    
+    while round.counter < round.fail_count and not round.check_win():
+        letter = input('\n\nЗагадано слово на русском языке. Введите букву:')
+        round.change_output(letter)
 
-        if round.check_win():
-            print('\n\nПоздравляю с победой!')
-        else:
-            print('\n\nВы проиграли. Загаданное слово:', round.word)
-
-except FileNotFoundError:
-    print('Словарь не найден.')
-except IndexError:
-    print('Ошибка индексирования.')
+    if round.check_win():
+        print('\n\nПоздравляю с победой!')
+    else:
+        print('\n\nВы проиграли. Загаданное слово:', round.word)
