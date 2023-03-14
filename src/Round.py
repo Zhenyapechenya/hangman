@@ -137,7 +137,6 @@ ___||____________
                 for w in words_file.readlines():
                     if w != '\n':
                         words_list.append(w.strip().lower())
-                words_file.close()
                 return random.choice(words_list)
         except FileNotFoundError:
             sys.exit('Словарь не найден.')
