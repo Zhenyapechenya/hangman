@@ -132,13 +132,13 @@ ___||____________
 
     def get_random_word(self):
         try:
-            words_file = open("words.txt", "r")
-            words_list = []
-            for w in words_file.readlines():
-                if w != '\n':
-                    words_list.append(w.strip().lower())
-            words_file.close()
-            return random.choice(words_list)
+            with open("words.txt", "r") as words_file:
+                words_list = []
+                for w in words_file.readlines():
+                    if w != '\n':
+                        words_list.append(w.strip().lower())
+                words_file.close()
+                return random.choice(words_list)
         except FileNotFoundError:
             sys.exit('Словарь не найден.')
 
